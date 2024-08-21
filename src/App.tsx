@@ -4,6 +4,7 @@ import { nanoid } from "nanoid";
 // component imports
 import { LoadingBar } from "./components/loading-bar";
 import { BottomNav } from "./components/bottom-nav";
+import { WindowModal } from "./components/window-modal";
 
 // themeing
 import { styleReset } from "react95";
@@ -123,6 +124,7 @@ function App() {
               <p className="text-xs text-center">{icon.name}</p>
             </div>
           ))}
+          <WindowModal />
           <div className="bottom-0 left-0 absolute w-full">
             <BottomNav />
           </div>
