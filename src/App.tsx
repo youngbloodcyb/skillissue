@@ -4,7 +4,7 @@ import { nanoid } from "nanoid";
 // component imports
 import { LoadingBar } from "./components/loading-bar";
 import { BottomNav } from "./components/bottom-nav";
-import { WindowModal } from "./components/window-modal";
+import { GameModal } from "./components/game-modal";
 
 // themeing
 import { styleReset } from "react95";
@@ -57,12 +57,20 @@ const defaultIcons: Icon[] = [
     position: { x: 100, y: 235 },
     image: "/icons/blog.png",
   },
+  {
+    id: nanoid(6),
+    name: "Game",
+    position: { x: 652, y: 176 },
+    image: "/icons/game.png",
+  },
 ];
 
 function App() {
   const [icons, setIcons] = React.useState<Icon[]>(defaultIcons);
   const [dragging, setDragging] = React.useState<string | null>(null);
   const [dragStart, setDragStart] = React.useState<IconPosition | null>(null);
+
+  const [gameModal, setGameModal] = React.useState<boolean>(false);
 
   const handleDragStart = (
     event: React.DragEvent<HTMLDivElement>,
@@ -97,6 +105,17 @@ function App() {
     setDragStart(null);
   };
 
+  const handleDoubleClick = (iconName: string) => {
+    switch (iconName) {
+      case "Game":
+        setGameModal(true);
+        break;
+      // Add other cases if needed
+      default:
+        break;
+    }
+  };
+
   return (
     <>
       <GlobalStyles />
@@ -114,6 +133,7 @@ function App() {
               onDragStart={(event) => handleDragStart(event, icon.id)}
               onDrag={handleDrag}
               onDragEnd={handleDragEnd}
+              onDoubleClick={() => handleDoubleClick(icon.name)}
               key={icon.id}
               style={{
                 left: icon.position.x,
@@ -124,7 +144,7 @@ function App() {
               <p className="text-xs text-center">{icon.name}</p>
             </div>
           ))}
-          <WindowModal />
+          <GameModal open={gameModal} setOpen={setGameModal} />
           <div className="bottom-0 left-0 absolute w-full">
             <BottomNav />
           </div>
