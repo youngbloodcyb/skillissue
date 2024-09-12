@@ -45,7 +45,8 @@ export const BottomNav = () => {
               style={{
                 position: "absolute",
                 left: "0",
-                top: "-153px",
+                top: "-200px",
+                width: "180px",
               }}
               onClick={() => setOpen(false)}
             >
@@ -53,13 +54,25 @@ export const BottomNav = () => {
                 <span role="img" aria-label="👨‍💻">
                   👨‍💻
                 </span>
-                Profile
+                <a href="https://9d8.dev/" target="_blank">
+                  Business
+                </a>
+              </MenuListItem>
+              <MenuListItem>
+                <span role="img" aria-label="👨‍💻">
+                  🌎
+                </span>
+                <a href="https://atka.co/" target="_blank">
+                  More business
+                </a>
               </MenuListItem>
               <MenuListItem>
                 <span role="img" aria-label="📁">
                   📁
                 </span>
-                My account
+                <a href="https://cameron.so/" target="_blank">
+                  My account
+                </a>
               </MenuListItem>
               <Separator />
               <MenuListItem disabled>
