@@ -110,7 +110,12 @@ function App() {
       case "Game":
         setGameModal(true);
         break;
-      // Add other cases if needed
+      case "Blog":
+        window.open("https://cameron.so/posts", "_blank");
+        break;
+      case "Videos":
+        window.open("https://www.youtube.com/@skillissuestudio", "_blank");
+        break;
       default:
         break;
     }
