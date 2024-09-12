@@ -69,8 +69,19 @@ function App() {
   const [icons, setIcons] = React.useState<Icon[]>(defaultIcons);
   const [dragging, setDragging] = React.useState<string | null>(null);
   const [dragStart, setDragStart] = React.useState<IconPosition | null>(null);
-
   const [gameModal, setGameModal] = React.useState<boolean>(false);
+  const [showDesktopView, setShowDesktopView] = React.useState(
+    window.innerWidth > 768
+  );
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      setShowDesktopView(window.innerWidth > 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const handleDragStart = (
     event: React.DragEvent<HTMLDivElement>,
@@ -125,7 +136,7 @@ function App() {
     <>
       <GlobalStyles />
       <ThemeProvider theme={original}>
-        {window.innerWidth > 768 ? (
+        {showDesktopView ? (
           <div
             className="w-full h-full relative  bg-[#008080]"
             onDragOver={(e) => e.preventDefault()}
