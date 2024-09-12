@@ -125,35 +125,63 @@ function App() {
     <>
       <GlobalStyles />
       <ThemeProvider theme={original}>
-        <div
-          className="w-full h-full relative  bg-[#008080]"
-          onDragOver={(e) => e.preventDefault()}
-        >
-          <LoadingBar />
-          {icons.map((icon) => (
-            <div
-              className={`absolute cursor-pointer flex flex-col gap-2 p-2 rounded-sm ${
-                icon.id === dragging ? "border-dashed border" : ""
-              }`}
-              onDragStart={(event) => handleDragStart(event, icon.id)}
-              onDrag={handleDrag}
-              onDragEnd={handleDragEnd}
-              onDoubleClick={() => handleDoubleClick(icon.name)}
-              key={icon.id}
-              style={{
-                left: icon.position.x,
-                top: icon.position.y,
-              }}
-            >
-              <img src={icon.image} alt={icon.name} />
-              <p className="text-xs text-center">{icon.name}</p>
+        {window.innerWidth > 768 ? (
+          <div
+            className="w-full h-full relative  bg-[#008080]"
+            onDragOver={(e) => e.preventDefault()}
+          >
+            <LoadingBar />
+            {icons.map((icon) => (
+              <div
+                className={`absolute cursor-pointer flex flex-col gap-2 p-2 rounded-sm ${
+                  icon.id === dragging ? "border-dashed border" : ""
+                }`}
+                onMouseEnter={(e) => {
+                  const target = e.currentTarget;
+                  target.title = "Double click";
+                }}
+                onMouseLeave={(e) => {
+                  const target = e.currentTarget;
+                  target.title = "";
+                }}
+                onDragStart={(event) => handleDragStart(event, icon.id)}
+                onDrag={handleDrag}
+                onDragEnd={handleDragEnd}
+                onDoubleClick={() => handleDoubleClick(icon.name)}
+                key={icon.id}
+                style={{
+                  left: icon.position.x,
+                  top: icon.position.y,
+                }}
+              >
+                <img src={icon.image} alt={icon.name} />
+                <p className="text-xs text-center">{icon.name}</p>
+              </div>
+            ))}
+            <GameModal open={gameModal} setOpen={setGameModal} />
+            <div className="bottom-0 left-0 absolute w-full">
+              <BottomNav />
             </div>
-          ))}
-          <GameModal open={gameModal} setOpen={setGameModal} />
-          <div className="bottom-0 left-0 absolute w-full">
-            <BottomNav />
           </div>
-        </div>
+        ) : (
+          <div className="p-4 text-black">
+            <h1>skill issue studio</h1>
+            <ul className="block">
+              <li className="underline">
+                <a href="https://www.youtube.com/@skillissuestudio">videos</a>
+              </li>
+              <li className="underline">
+                <a href="https://cameron.so">cameron.so</a>
+              </li>
+              <li className="underline">
+                <a href="https://9d8.dev">9d8.dev</a>
+              </li>
+              <li className="underline">
+                <a href="https://atka.co">atka.co</a>
+              </li>
+            </ul>
+          </div>
+        )}
       </ThemeProvider>
     </>
   );
