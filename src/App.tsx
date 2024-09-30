@@ -14,7 +14,7 @@ import ms_sans_serif from "react95/dist/fonts/ms_sans_serif.woff2";
 import ms_sans_serif_bold from "react95/dist/fonts/ms_sans_serif_bold.woff2";
 
 // analytic
-import { inject } from "@vercel/analytics";
+import { Analytics } from "@vercel/analytics/react";
 
 const GlobalStyles = createGlobalStyle`
   ${styleReset}
@@ -69,8 +69,6 @@ const defaultIcons: Icon[] = [
 ];
 
 function App() {
-  inject();
-
   const [icons, setIcons] = React.useState<Icon[]>(defaultIcons);
   const [dragging, setDragging] = React.useState<string | null>(null);
   const [dragStart, setDragStart] = React.useState<IconPosition | null>(null);
@@ -199,6 +197,7 @@ function App() {
           </div>
         )}
       </ThemeProvider>
+      <Analytics />
     </>
   );
 }
