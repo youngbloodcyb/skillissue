@@ -199,7 +199,6 @@ function App() {
           </div>
         )}
       </ThemeProvider>
-      <Analytics />
     </>
   );
 }
