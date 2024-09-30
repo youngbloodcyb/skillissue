@@ -13,6 +13,9 @@ import original from "react95/dist/themes/original";
 import ms_sans_serif from "react95/dist/fonts/ms_sans_serif.woff2";
 import ms_sans_serif_bold from "react95/dist/fonts/ms_sans_serif_bold.woff2";
 
+// analytic
+import { Analytics } from "@vercel/analytics/react";
+
 const GlobalStyles = createGlobalStyle`
   ${styleReset}
   @font-face {
@@ -194,6 +197,7 @@ function App() {
           </div>
         )}
       </ThemeProvider>
+      <Analytics />
     </>
   );
 }
